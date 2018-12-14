@@ -24,18 +24,18 @@ Method:POST
 Parameter Body:
 ```json
 {
-"username":"string",
-"password":"string"
+	"username": "string",
+	"password": "string"
 }
 ```
 Response Json:
 ```json
 {
-"status": "0",
- "message": "Sukses",
- "data": {
-"idUser": 1
- }
+	"status": "0",
+	"message": "Sukses",
+	"data": {
+		"idUser": 1
+	}
 }
 ```
 
@@ -44,18 +44,21 @@ http://localhost:8080/api/user
 Method : POST
 Parameter Body:
 ```json
-{"username":"String", "password":"String"}
+{
+	"username": "String",
+	"password": "String"
+}
 ```
 Response:
 ```json
 {
-"status": "0",
- "message": "Sukses",
- "data": {
-"idUser": 1,
-"username":"diyas",
-"password":"pass123"
-}
+	"status": "0",
+	"message": "Sukses",
+	"data": {
+		"idUser": 1,
+		"username": "diyas",
+		"password": "pass123"
+	}
 }
 ```
 
@@ -64,34 +67,34 @@ Method : GET
 Response:
 ```json
 {
-"status": "0",
-"message": "Sukses",
-"data": [
-{
-"idUser": 1,
-"username": "diyas",
-"password": "pass123"
-}
-]
+	"status": "0",
+	"message": "Sukses",
+	"data": [{
+		"idUser": 1,
+		"username": "diyas",
+		"password": "pass123"
+	}]
 }
 ```
 
-GetAllOperator
+InsertOperator
 http://localhost:8080/api/operator
 Method : POST
 Parameter Body:
 ```json
-{"nama":"String"}
+{
+	"nama": "String"
+}
 ```
 Response:
 ```json
 {
-"status": "0",
-"message": "Sukses",
-"data": {
-"idOperator": 4,
-"nama": "SmartFren"
-}
+	"status": "0",
+	"message": "Sukses",
+	"data": {
+		"idOperator": 4,
+		"nama": "SmartFren"
+	}
 }
 ```
 
@@ -100,18 +103,21 @@ http://localhost:8080/api/voucher/{idOperator}
 Method : POST
 Parameter Body:
 ```json
-{"pulsa":"String", "harga":"String"}
+{
+	"pulsa": "String",
+	"harga": "String"
+}
 ```
 Response:
 ```json
 {
-"status": "0",
- "message": "Sukses",
- "data": {
-"idVoucher": 3,
-"pulsa": "50",
-"harga": "51000"
-}
+	"status": "0",
+	"message": "Sukses",
+	"data": {
+		"idVoucher": 3,
+		"pulsa": "50",
+		"harga": "51000"
+	}
 }
 ```
 
@@ -121,28 +127,29 @@ Method : POST
 Parameter Body:
 ```json
 {
-"noHp":"String","harga":"String"
+	"noHp": "String",
+	"harga": "String"
 }
 ```
 Response:
 ```json
 {
-"status": "0",
- "message": "Sukses",
- "data": {
-"id": 3,
-"user": {
-"idUser": 1,
- "username": "diyasck",
-"password": "pass123"
-},
- "voucher": {
- "idVoucher": 1,
- "pulsa": "10",
-"harga": "11500"
-},
- "noHp": 87808812100,
-"harga":"11500"
-}
+	"status": "0",
+	"message": "Sukses",
+	"data": {
+		"id": 3,
+		"user": {
+			"idUser": 1,
+			"username": "diyasck",
+			"password": "pass123"
+		},
+		"voucher": {
+			"idVoucher": 1,
+			"pulsa": "10",
+			"harga": "11500"
+		},
+		"noHp": 87808812100,
+		"harga": "11500"
+	}
 }
 ```
