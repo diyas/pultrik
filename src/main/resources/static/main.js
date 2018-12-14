@@ -1,4 +1,9 @@
-
+function getHarga() {
+    var selectBox = document.getElementById('voucher');
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+    var array = selectedValue.split(':')
+    $("#harga").text(array[1])
+}
 
 function fire_ajax_submit() {
 

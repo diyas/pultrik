@@ -11,8 +11,9 @@ Cara setting koneksi Database:
 - Arahkan ke src/main/resources
 - Buka file application.properties
 - ubah spring.datasource.url = jdbc:mysql://localhost:3306/(nama_database)?useSSL=false
-- ubah spring.datasource.username = (username)
-- ubah spring.datasource.password = (password)
+- ubah spring.datasource.username = (username_database)
+- ubah spring.datasource.password = (password_database)
+- Otomatis Tabel akan ter-generate(ddl-auto = update)
 
 UI
 http://localhost:8080

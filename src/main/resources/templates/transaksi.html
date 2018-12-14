@@ -6,12 +6,12 @@
 </head>
 
 <body>
-<h2>Transaksi</h2>
+<h2>Transaction</h2>
 <!--<p th:text="${allOperator}" /><br>-->
-<p th:text="${error}" />
-<p th:text="${idUser}" />
-<form action="#" th:action="@{/transaksi_process}" th:object="${form}" method="post">
-    <input type="text" th:field="*{idUser}" value="dfdsfdsfds"/>
+<p th:text="${message}" />
+<!--<p th:text="${idUser}" />-->
+<form action="#" th:action="@{/transaksi_process/} + ${idUser}" th:object="${form}" method="post">
+
     <table>
         <tr>
             <td>Phone Number</td>
@@ -31,8 +31,8 @@
         <tr>
             <td>Voucher</td>
             <td>
-                <select id="voucher" onchange="changeFunc('voucher');" th:field="*{idVoucher}">
-                    <!--<option value=""> &#45;&#45; </option>-->
+                <select id="voucher" onchange="getHarga();" th:field="*{idVoucher}">
+
                     <!--<option th:each="voucher : ${allVoucher}"-->
                             <!--th:value="${voucher.idVoucher}"-->
                             <!--th:text="${voucher.pulsa}"/>-->
@@ -41,7 +41,7 @@
         </tr>
         <tr>
             <td>Harga</td>
-            <td><input type="text" th:field="*{harga}" /></td>
+            <td><input id="harga" type="text" th:field="*{harga}" readonly/></td>
         </tr>
         <tr>
             <td></td>
@@ -73,6 +73,7 @@ var urlAllUser = baseUrl+"/voucher/";
 
 
 function viewAllVoucher(id){
+    $("#harga").val("");
 	$('#voucher').html("");
 
     $.ajax({
@@ -82,8 +83,9 @@ function viewAllVoucher(id){
         	//$('#content').html("");
         	//$('#data').html("");
         	if(response.length != 0){
+        	    $('#voucher').append('<option value=""> -- </option>');
         		$.each(response.data, function(i,v) {
-                    $('#voucher').append('<option value="' + v.idVoucher + '">' + v.pulsa + '</option>');
+                    $('#voucher').append('<option value="' + v.idVoucher +':'+ v.harga +'">' + v.pulsa + '</option>');
         		});
         	}
         	//console.log(response.data)
@@ -97,8 +99,15 @@ function viewAllVoucher(id){
    function changeFunc(id) {
     var selectBox = document.getElementById(id);
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-    viewAllVoucher(selectedValue)
+    viewAllVoucher(selectedValue);
    }
+   function getHarga() {
+    var selectBox = document.getElementById('voucher');
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+    var array = selectedValue.split(':');
+    console.log(array);
+    $("#harga").val(array[1]);
+}
 </script>
 </body>
 </html>

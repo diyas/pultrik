@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
@@ -63,30 +64,25 @@ public class LoginCtl {
         return mView;
     }
 
-    @PostMapping("/transaksi_process")
-    public String transaksiProcess(@ModelAttribute("transaction") TransactionForm form, Model redir) throws URISyntaxException{
-
+    @PostMapping("/transaksi_process/{idUser}")
+    public String transaksiProcess(@ModelAttribute("transaction") TransactionForm form, RedirectAttributes redir, @PathVariable(name = "idUser") String idUser) throws URISyntaxException{
+        String idVoucher = form.getIdVoucher().split(":")[0];
         Transaksi transaksi = new Transaksi();
         transaksi.setNoHp(form.getNoHp());
         transaksi.setHarga(form.getHarga());
-        final String baseUrl = "http://localhost:8080/api/transaksi/"+form.getIdUser()+"/"+form.getIdVoucher();
+        final String baseUrl = "http://localhost:8080/api/transaksi/"+idUser+"/"+idVoucher;
         URI uri = new URI(baseUrl);
         RestTemplate rest = new RestTemplate();
         ResponseEntity<Response> resp = rest.postForEntity(uri, transaksi, Response.class);
         Response response = resp.getBody();
-//        if (!Utility.validateForm("^[0-9]+$", form.getNoHp())) {
-//            redir.addFlashAttribute("error", response.getMessage());
-//            return "redirect:/transaksi";
-//        }
         if (response.getStatus().equalsIgnoreCase("0")) {
+            redir.addFlashAttribute("idUser", idUser);
+            redir.addFlashAttribute("message", "Isi Pulsa No "+form.getNoHp() + " Sukses");
             return "redirect:/transaksi";
         } else {
-            redir.addAttribute("error", response.getMessage());
-            List<Operator> lst1 = getOperator();
-            //List<Voucher> lst2 = getVoucher(1);
-            redir.addAttribute("allOperator", lst1);
-            redir.addAttribute("form",new TransactionForm());
-            return "transaksi";
+            redir.addFlashAttribute("error", response.getMessage());
+            redir.addFlashAttribute("idUser", idUser);
+            return "redirect:/transaksi";
         }
     }
 
@@ -107,10 +103,4 @@ public class LoginCtl {
         List<Voucher> lst = (List<Voucher>) resp.getBody().getData();
         return lst;
     }
-//
-//    @PostMapping("/form")
-//    public String formPost(User user, Model model) {
-//        model.addAttribute("user", user);
-//        return "form";
-//    }
 }
