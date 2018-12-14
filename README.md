@@ -1,4 +1,4 @@
-# pultrik
+# PulTrik
 
 Requirement:
 - Java
@@ -22,11 +22,14 @@ Login
 http://localhost:8080/api/login
 Method:POST
 Parameter Body:
+```json
 {
 "username":"string",
 "password":"string"
 }
+```
 Response Json:
+```json
 {
 "status": "0",
  "message": "Sukses",
@@ -34,15 +37,17 @@ Response Json:
 "idUser": 1
  }
 }
+```
 
 InsertUser
 http://localhost:8080/api/user
 Method : POST
 Parameter Body:
-{"username":"String", "password":"String"
-
-}
+```json
+{"username":"String", "password":"String"}
+```
 Response:
+```json
 {
 "status": "0",
  "message": "Sukses",
@@ -52,10 +57,12 @@ Response:
 "password":"pass123"
 }
 }
+```
 
 GetAllUser
 Method : GET
 Response:
+```json
 {
 "status": "0",
 "message": "Sukses",
@@ -67,15 +74,17 @@ Response:
 }
 ]
 }
+```
 
 GetAllOperator
 http://localhost:8080/api/operator
 Method : POST
 Parameter Body:
-{"nama":"String"
-
-}
+```json
+{"nama":"String"}
+```
 Response:
+```json
 {
 "status": "0",
 "message": "Sukses",
@@ -84,15 +93,17 @@ Response:
 "nama": "SmartFren"
 }
 }
+```
 
 GetAllVoucherByIdOperator
 http://localhost:8080/api/voucher/{idOperator}
 Method : POST
 Parameter Body:
-{"pulsa":"String", "harga":"String"
-
-}
+```json
+{"pulsa":"String", "harga":"String"}
+```
 Response:
+```json
 {
 "status": "0",
  "message": "Sukses",
@@ -102,15 +113,19 @@ Response:
 "harga": "51000"
 }
 }
+```
 
 SendTransaction
 http://localhost:8080/api/transaksi/{idUser}/{idVoucher}
 Method : POST
 Parameter Body:
+```json
 {
 "noHp":"String","harga":"String"
 }
+```
 Response:
+```json
 {
 "status": "0",
  "message": "Sukses",
@@ -130,3 +145,4 @@ Response:
 "harga":"11500"
 }
 }
+```
