@@ -42,7 +42,7 @@ Response :
 
 #### InsertUser
 http://localhost:8080/api/user
-#####Method : POST
+##### Method : POST
 Parameter Body :
 ```json
 {
@@ -63,8 +63,8 @@ Response:
 }
 ```
 
-####GetAllUser
-#####Method : GET
+#### GetAllUser
+##### Method : GET
 Response:
 ```json
 {
@@ -78,9 +78,9 @@ Response:
 }
 ```
 
-####InsertOperator
+#### InsertOperator
 http://localhost:8080/api/operator
-#####Method : POST
+##### Method : POST
 Parameter Body:
 ```json
 {
@@ -99,9 +99,9 @@ Response:
 }
 ```
 
-####GetAllVoucherByIdOperator
+#### GetAllVoucherByIdOperator
 http://localhost:8080/api/voucher/{idOperator}
-#####Method : POST
+##### Method : POST
 Parameter Body:
 ```json
 {
@@ -122,9 +122,9 @@ Response:
 }
 ```
 
-####SendTransaction
+#### SendTransaction
 http://localhost:8080/api/transaksi/{idUser}/{idVoucher}
-#####Method : POST
+##### Method : POST
 Parameter Body:
 ```json
 {
