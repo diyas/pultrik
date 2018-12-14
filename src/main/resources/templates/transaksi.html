@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaksi</title>
+</head>
+
+<body>
+<h2>Transaksi</h2>
+<!--<p th:text="${allOperator}" /><br>-->
+<p th:text="${error}" />
+<p th:text="${idUser}" />
+<form action="#" th:action="@{/transaksi_process}" th:object="${form}" method="post">
+    <input type="text" th:field="*{idUser}" value="dfdsfdsfds"/>
+    <table>
+        <tr>
+            <td>Phone Number</td>
+            <td><input type="text" th:field="*{noHp}" /></td>
+        </tr>
+        <tr>
+            <td>Operator</td>
+            <td>
+                <select id="operator" onchange="changeFunc('operator');" th:field="*{idOperator}">
+                    <option value=""> -- </option>
+                    <option th:each="operator : ${allOperator}"
+                            th:value="${operator.idOperator}"
+                            th:text="${operator.nama}"/>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Voucher</td>
+            <td>
+                <select id="voucher" onchange="changeFunc('voucher');" th:field="*{idVoucher}">
+                    <!--<option value=""> &#45;&#45; </option>-->
+                    <!--<option th:each="voucher : ${allVoucher}"-->
+                            <!--th:value="${voucher.idVoucher}"-->
+                            <!--th:text="${voucher.pulsa}"/>-->
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Harga</td>
+            <td><input type="text" th:field="*{harga}" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button type="submit">Kirim</button></td>
+        </tr>
+    </table>
+    <!--<br>-->
+    <!--<table>-->
+        <!--<thead>-->
+        <!--<td>1</td>-->
+        <!--<td>2</td>-->
+        <!--</thead>-->
+        <!--<tr th:each="voucher: ${allVoucher}">-->
+            <!--<td th:text="${voucher.idVoucher}" />-->
+            <!--<td th:text="${voucher.pulsa}" />-->
+        <!--</tr>-->
+    <!--</table>-->
+</form>
+
+<script type="text/javascript" src="webjars/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" src="/main.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+
+});
+
+var baseUrl = 'http://localhost:8080/api';
+var urlAllUser = baseUrl+"/voucher/";
+
+
+function viewAllVoucher(id){
+	$('#voucher').html("");
+
+    $.ajax({
+        url: urlAllUser+id,
+        dataType:'json',
+        success: function(response) {
+        	//$('#content').html("");
+        	//$('#data').html("");
+        	if(response.length != 0){
+        		$.each(response.data, function(i,v) {
+                    $('#voucher').append('<option value="' + v.idVoucher + '">' + v.pulsa + '</option>');
+        		});
+        	}
+        	//console.log(response.data)
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+           	 //$("#notice_div").html('Timeout contacting server..');
+           	 //window.setTimeout(basePage(), 60000);
+        }
+    });
+}
+   function changeFunc(id) {
+    var selectBox = document.getElementById(id);
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+    viewAllVoucher(selectedValue)
+   }
+</script>
+</body>
+</html>
