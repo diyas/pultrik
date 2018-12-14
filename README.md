@@ -15,21 +15,21 @@ Cara setting koneksi Database:
 - ubah spring.datasource.password = (password_database)
 - Otomatis Tabel akan ter-generate(ddl-auto = update)
 
-UI
+**UI**
 http://localhost:8080
 
-API
-Login
+# API
+#### Login
 http://localhost:8080/api/login
-Method:POST
-Parameter Body:
+##### Method : POST
+Parameter Body :
 ```json
 {
 	"username": "string",
 	"password": "string"
 }
 ```
-Response Json:
+Response :
 ```json
 {
 	"status": "0",
@@ -40,10 +40,10 @@ Response Json:
 }
 ```
 
-InsertUser
+#### InsertUser
 http://localhost:8080/api/user
-Method : POST
-Parameter Body:
+#####Method : POST
+Parameter Body :
 ```json
 {
 	"username": "String",
@@ -63,8 +63,8 @@ Response:
 }
 ```
 
-GetAllUser
-Method : GET
+####GetAllUser
+#####Method : GET
 Response:
 ```json
 {
@@ -78,9 +78,9 @@ Response:
 }
 ```
 
-InsertOperator
+####InsertOperator
 http://localhost:8080/api/operator
-Method : POST
+#####Method : POST
 Parameter Body:
 ```json
 {
@@ -99,9 +99,9 @@ Response:
 }
 ```
 
-GetAllVoucherByIdOperator
+####GetAllVoucherByIdOperator
 http://localhost:8080/api/voucher/{idOperator}
-Method : POST
+#####Method : POST
 Parameter Body:
 ```json
 {
@@ -122,9 +122,9 @@ Response:
 }
 ```
 
-SendTransaction
+####SendTransaction
 http://localhost:8080/api/transaksi/{idUser}/{idVoucher}
-Method : POST
+#####Method : POST
 Parameter Body:
 ```json
 {
@@ -149,7 +149,7 @@ Response:
 			"pulsa": "10",
 			"harga": "11500"
 		},
-		"noHp": 87808812100,
+		"noHp": "6767676767",
 		"harga": "11500"
 	}
 }
